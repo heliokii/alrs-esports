@@ -1,8 +1,8 @@
 ---
-interface Props { n: string; name: string; role: string; tag: string; riotId?: string; agents?: string[]; photo?: string }
+interface Props { n: string; name: string; role?: string; tag: string; riotId?: string; agents?: string[]; photo?: string }
 const { n, name, role, tag, riotId, agents = [], photo } = Astro.props;
 ---
-<article class:list={['pcard', { 'pcard--photo': photo }]} data-tilt tabindex="0" aria-label={`${name}, ${role}`}>
+<article class:list={['pcard', { 'pcard--photo': photo }]} data-tilt tabindex="0" aria-label={role ? `${name}, ${role}` : name}>
   <i class="tick tick--tl" aria-hidden="true"></i>
   <i class="tick tick--br" aria-hidden="true"></i>
   <div class="ghost-num num" aria-hidden="true">{n}</div>
@@ -17,6 +17,6 @@ const { n, name, role, tag, riotId, agents = [], photo } = Astro.props;
     )}
     <h3>{name}</h3>
     {riotId && <span class="label">{riotId}</span>}
-    <div class="kv"><span>Role</span><span>{role}</span></div>
+    {role && <div class="kv"><span>Role</span><span>{role}</span></div>}
   </div>
 </article>
