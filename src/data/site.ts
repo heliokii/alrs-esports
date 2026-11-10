@@ -19,7 +19,7 @@ export const site = {
     { href: '/partner', label: 'Partner' },
     { href: '/contact', label: 'Contact' },
   ],
-  ticker: ['Tryouts open', 'Valorant', 'Batangas City', 'Alangilan Red Spartans', 'ALRS Esports'],
+  ticker: ['ALRS Dark Eros', 'Valorant', 'Batangas City', 'Alangilan Red Spartans', 'ALRS Esports'],
 };
 
 // PLACEHOLDER: confirm what a sponsor actually gets
@@ -27,11 +27,4 @@ export const partnerPerks = [
   { title: 'Jersey placement', body: 'Your logo on the team kit, worn in every match and photo.' },
   { title: 'Social content', body: 'Logo and mentions across our Facebook posts and match announcements.' },
   { title: 'Stream and tournament presence', body: 'Your brand on overlays, team graphics and tournament registrations.' },
-];
-
-export const tryoutSteps = [
-  { title: 'Riot ID and IGN', body: 'Your in-game name and full Riot ID (name#tag).' },
-  { title: 'Rank', body: 'Current and peak rank.' },
-  { title: 'Role and agent pool', body: 'Your main role and the agents you play most.' },
-  { title: 'Availability', body: 'The days and hours you can scrim, Philippine time.' },
 ];

@@ -5,6 +5,6 @@ export const news = [
     date: 'Nov 2026',
     tag: 'Club',
     title: 'ALRS Esports launches its website',
-    body: "The Alangilan Red Spartans' esports team now has a home on the web. Roster changes, schedule and tryout details will be posted here first.",
+    body: "The Alangilan Red Spartans' esports team now has a home on the web. Roster changes and the match schedule will be posted here first.",
   },
 ];

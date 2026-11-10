@@ -20,7 +20,6 @@ const ticker = [...site.ticker, ...site.ticker, ...site.ticker, ...site.ticker];
     <div class="wrap hero__meta">
       <span>Valorant · {site.city}</span>
       <span>Alangilan Red Spartans</span>
-      <span>Tryouts open</span>
     </div>
     <div class="hero__center">
       <h1 class="hero__title" data-hero aria-label={site.name}>
@@ -37,7 +36,7 @@ const ticker = [...site.ticker, ...site.ticker, ...site.ticker, ...site.ticker];
         <p class="lede">The Alangilan Red Spartans' Valorant team, built in {site.city}</p>
         <div class="btns">
           <a class="btn" href="/roster" data-magnetic>Meet the team</a>
-          <a class="btn btn--ghost" href="/tryouts" data-magnetic>Apply for tryouts</a>
+          <a class="btn btn--ghost" href={site.facebook} target="_blank" rel="noopener noreferrer" data-magnetic>Follow on Facebook</a>
         </div>
       </div>
     </div>
@@ -66,12 +65,12 @@ const ticker = [...site.ticker, ...site.ticker, ...site.ticker, ...site.ticker];
       <div class="head-row">
         <div class="head">
           <span class="label num">02 / The roster</span>
-          <h2 class="h-sec">Meet the five</h2>
+          <h2 class="h-sec">{team.name}</h2>
         </div>
         <a class="more" href="/roster">Full roster</a>
       </div>
       <div class="cards">
-        {team.players.map((p, i) => <PlayerCard n={String(i + 1).padStart(2, '0')} name={p.name} role={p.role} tag={p.tag} agents={p.agents} />)}
+        {team.players.map((p, i) => <PlayerCard n={String(i + 1).padStart(2, '0')} name={p.name} role={p.role} tag={p.tag} agents={p.agents} photo={p.photo} />)}
       </div>
     </div>
   </section>
@@ -91,11 +90,11 @@ const ticker = [...site.ticker, ...site.ticker, ...site.ticker, ...site.ticker];
   </section>
 
   <section class="band tiles">
-    <a class="tile" href="/tryouts">
-      <span class="label">For players</span>
-      <h3>Think you can<br>make the five?</h3>
-      <p>Tryouts are open. Apply to be considered for the Valorant roster.</p>
-      <span class="more">Tryout details</span>
+    <a class="tile" href={site.facebook} target="_blank" rel="noopener noreferrer">
+      <span class="label">For fans</span>
+      <h3>Follow the<br>Red Spartans</h3>
+      <p>Match days, results and roster news go up on Facebook first.</p>
+      <span class="more">Facebook</span>
     </a>
     <a class="tile" href="/partner">
       <span class="label">For brands</span>

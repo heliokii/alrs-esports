@@ -6,7 +6,6 @@ interface Props { title: string; description?: string }
 const { title, description = site.description } = Astro.props;
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const current = (href: string) => (href === path ? 'page' : undefined);
-const menuLinks = [...site.nav, { href: '/tryouts', label: 'Tryouts' }];
 ---
 <!doctype html>
 <html lang="en-PH">
@@ -44,7 +43,7 @@ const menuLinks = [...site.nav, { href: '/tryouts', label: 'Tryouts' }];
       <details class="menu">
         <summary><span class="menu__open">Menu</span><span class="menu__close">Close</span></summary>
         <nav aria-label="Mobile">
-          {menuLinks.map((l) => <a href={l.href} aria-current={current(l.href)}>{l.label}</a>)}
+          {site.nav.map((l) => <a href={l.href} aria-current={current(l.href)}>{l.label}</a>)}
         </nav>
       </details>
     </div>
@@ -64,7 +63,6 @@ const menuLinks = [...site.nav, { href: '/tryouts', label: 'Tryouts' }];
       <nav aria-label="Footer">
         <span class="label">Site</span>
         {site.nav.map((l) => <a href={l.href}>{l.label}</a>)}
-        <a href="/tryouts">Valorant tryouts</a>
         <a href="/privacy">Privacy policy</a>
       </nav>
       <div>
@@ -72,7 +70,6 @@ const menuLinks = [...site.nav, { href: '/tryouts', label: 'Tryouts' }];
           <span class="label">Reach us</span>
           <a href={site.facebook} target="_blank" rel="noopener noreferrer">Facebook</a>
           <a href="/contact#form-contact">Contact form</a>
-          <a href="/tryouts#form-tryout">Apply for tryouts</a>
         </div>
       </div>
     </div>

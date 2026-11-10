@@ -1,7 +1,7 @@
 ---
 import { site } from '../data/site';
 
-interface Field { name: string; label: string; type?: 'text' | 'email' | 'textarea' | 'select'; options?: string[]; optional?: boolean }
+interface Field { name: string; label: string; type?: 'text' | 'email' | 'textarea'; optional?: boolean }
 interface Props { id: string; subject: string; submit: string; fields: Field[] }
 const { id, subject, submit, fields } = Astro.props;
 // mailto needs text/plain so the mail body stays readable
@@ -13,12 +13,6 @@ const action = site.formEndpoint || `mailto:${site.email}?subject=${encodeURICom
     <label class="field">
       {f.label}{f.optional && ' (optional)'}
       {f.type === 'textarea' ? <textarea name={f.name} required={!f.optional}></textarea>
-        : f.type === 'select' ? (
-          <select name={f.name} required={!f.optional}>
-            <option value="">Select</option>
-            {f.options?.map((o) => <option>{o}</option>)}
-          </select>
-        )
         : <input type={f.type ?? 'text'} name={f.name} required={!f.optional} autocomplete={f.type === 'email' ? 'email' : undefined}>}
     </label>
   ))}
