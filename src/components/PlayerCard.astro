@@ -1,0 +1,21 @@
+---
+interface Props { n: string; name: string; role: string; tag: string; riotId?: string; agents?: string[] }
+const { n, name, role, tag, riotId, agents = [] } = Astro.props;
+---
+<article class="pcard" data-tilt tabindex="0" aria-label={`${name}, ${role}`}>
+  <i class="tick tick--tl" aria-hidden="true"></i>
+  <i class="tick tick--br" aria-hidden="true"></i>
+  <div class="ghost-num num" aria-hidden="true">{n}</div>
+  {agents.length > 0 && (
+    <ul class="agents" aria-label="Agent pool">{agents.map((a) => <li>{a}</li>)}</ul>
+  )}
+  <div class="pcard__top">
+    <span class="label num">{n}</span>
+    <span class="tag">{tag}</span>
+  </div>
+  <div class="pcard__body">
+    <h3>{name}</h3>
+    {riotId && <span class="label">{riotId}</span>}
+    <div class="kv"><span>Role</span><span>{role}</span></div>
+  </div>
+</article>

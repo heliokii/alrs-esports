@@ -1,0 +1,48 @@
+---
+import Base from '../layouts/Base.astro';
+import Form from '../components/Form.astro';
+import Backdrop from '../components/Backdrop.astro';
+import { site } from '../data/site';
+
+const tiles = [
+  { label: 'General', title: 'Say hello', cta: 'Contact form', href: '#form-contact' },
+  { label: 'Players', title: 'Tryouts', cta: 'Apply now', href: '/tryouts#form-tryout' },
+  { label: 'Brands', title: 'Partnerships', cta: 'Send an enquiry', href: '/partner#form-partner' },
+  { label: 'Socials', title: 'Facebook', cta: 'ALRS.Esports', href: site.facebook },
+];
+---
+<Base title={`Contact | ${site.name}`} description={`Get in touch with ${site.name}.`}>
+  <section class="band page-head">
+    <Backdrop src="silk" pos="center 25%" opacity={0.6} fade="linear-gradient(90deg, rgb(10 7 8 / 0.9) 20%, rgb(10 7 8 / 0.3))" />
+    <div class="wrap">
+      <span class="label">Contact</span>
+      <h1 class="h-page">Talk to us</h1>
+    </div>
+  </section>
+
+  <section class="band tiles" style="--tile-min:280px;--tile-h:200px">
+    {tiles.map((t) => (
+      <a class="tile" href={t.href} style="justify-content:space-between;padding:24px var(--pad)">
+        <span class="label">{t.label}</span>
+        <span>
+          <h2 class="h-item">{t.title}</h2>
+          <span class="more">{t.cta}</span>
+        </span>
+      </a>
+    ))}
+  </section>
+
+  <section class="band band--ink">
+    <div class="wrap split">
+      <div class="head">
+        <span class="label">General</span>
+        <h2 class="h-sec">Send a message</h2>
+      </div>
+      <Form id="form-contact" subject="Website message" submit="Send message" fields={[
+        { name: 'name', label: 'Your name' },
+        { name: 'email', label: 'Email', type: 'email' },
+        { name: 'message', label: 'Message', type: 'textarea' },
+      ]} />
+    </div>
+  </section>
+</Base>

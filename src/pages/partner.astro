@@ -1,0 +1,63 @@
+---
+import Base from '../layouts/Base.astro';
+import Rows from '../components/Rows.astro';
+import Form from '../components/Form.astro';
+import Backdrop from '../components/Backdrop.astro';
+import { site, partnerPerks } from '../data/site';
+---
+<Base title={`Partner with us | ${site.name}`} description={`Sponsor ${site.name}, a Valorant team from ${site.city}.`}>
+  <section class="band">
+    <div class="wrap split" style="align-items:center">
+      <div class="head" style="gap:24px">
+        <span class="label">Partnerships</span>
+        <h1 class="h-page" style="font-size:clamp(48px,8vw,112px)">Your name<br>on the maroon</h1>
+        <p class="lede">{site.name} is a Valorant team from {site.city}. Sponsors who join now are with us from the first season.</p>
+        <div class="btns"><a class="btn" href="#form-partner" data-magnetic>Start a conversation</a></div>
+      </div>
+      <div class="lockup" aria-hidden="true">
+        <Backdrop src="silk" pos="center 20%" opacity={0.7} fade="radial-gradient(circle at 50% 50%, rgb(10 7 8 / 0.2), rgb(10 7 8 / 0.75))" />
+        <img src={site.logo} alt=""><i></i><span>Your logo</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--ink">
+    <div class="wrap split">
+      <div class="head">
+        <span class="label num">01 / What you get</span>
+        <h2 class="h-sec">On everything we do</h2>
+      </div>
+      <Rows items={partnerPerks} />
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap split">
+      <div class="head">
+        <span class="label num">02 / Good fits</span>
+        <h2 class="h-sec">Who we want<br>to work with</h2>
+      </div>
+      <div class="stack" style="gap:24px">
+        <div class="chips">
+          {['Peripherals', 'Energy and drinks', 'Gaming cafés', 'PC builders', 'Apparel', 'Batangas businesses'].map((c) => <span>{c}</span>)}
+        </div>
+        <p class="prose">Packages are flexible. Product, gear, tournament fees or cash all count.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--ink">
+    <div class="wrap split">
+      <div class="head">
+        <span class="label num">03 / Enquiry</span>
+        <h2 class="h-sec">Tell us what<br>you have in mind</h2>
+      </div>
+      <Form id="form-partner" subject="Partnership enquiry" submit="Send enquiry" fields={[
+        { name: 'name', label: 'Your name' },
+        { name: 'brand', label: 'Brand or company' },
+        { name: 'email', label: 'Email', type: 'email' },
+        { name: 'message', label: 'What you have in mind', type: 'textarea' },
+      ]} />
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,52 @@
+---
+import Base from '../layouts/Base.astro';
+import Rows from '../components/Rows.astro';
+import Form from '../components/Form.astro';
+import Backdrop from '../components/Backdrop.astro';
+import { site, tryoutSteps } from '../data/site';
+
+const ranks = ['Iron', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond', 'Ascendant', 'Immortal', 'Radiant'];
+---
+<Base title={`Valorant tryouts | ${site.name}`} description={`Apply to try out for the ${site.name} Valorant roster.`}>
+  <section class="band page-head">
+    <Backdrop src="neon" pos="center 70%" opacity={0.7} fade="linear-gradient(90deg, rgb(10 7 8 / 0.92) 25%, rgb(10 7 8 / 0.3))" />
+    <div class="wrap">
+      <span class="label" style="color:var(--cream-dim)">{site.name} · Valorant</span>
+      <h1 class="h-page">Valorant tryouts</h1>
+      <p class="lede" style="color:var(--cream)">Rank gets you looked at. Comms, attitude and consistency get you a seat.</p>
+      <div class="btns"><a class="btn" href="#form-tryout" data-magnetic>Apply now</a></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap split">
+      <div class="head">
+        <span class="label num">01 / Application</span>
+        <h2 class="h-sec">What to submit</h2>
+      </div>
+      <Rows items={tryoutSteps} />
+    </div>
+  </section>
+
+  <section class="band band--ink">
+    <div class="wrap split">
+      <div class="head">
+        <span class="label num">02 / Apply</span>
+        <h2 class="h-sec">Send it</h2>
+        <p class="lede">Two minutes on the form</p>
+      </div>
+      <Form id="form-tryout" subject="Valorant tryout application" submit="Send application" fields={[
+        { name: 'ign', label: 'In-game name' },
+        { name: 'riot_id', label: 'Riot ID (name#tag)' },
+        { name: 'email', label: 'Email', type: 'email' },
+        { name: 'discord', label: 'Discord username' },
+        { name: 'current_rank', label: 'Current rank', type: 'select', options: ranks },
+        { name: 'peak_rank', label: 'Peak rank', type: 'select', options: ranks },
+        { name: 'role', label: 'Main role', type: 'select', options: ['Duelist', 'Initiator', 'Controller', 'Sentinel', 'Flex', 'IGL'] },
+        { name: 'agents', label: 'Agents you play most' },
+        { name: 'availability', label: 'Days and hours you can scrim' },
+        { name: 'note', label: 'What you bring to the team', type: 'textarea', optional: true },
+      ]} />
+    </div>
+  </section>
+</Base>

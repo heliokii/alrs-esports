@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro';
+import Events from '../components/Events.astro';
+import { site } from '../data/site';
+import { news } from '../data/news';
+import team from '../data/teams/valorant';
+---
+<Base title={`News and schedule | ${site.name}`} description={`Announcements and upcoming matches from ${site.name}.`}>
+  <section class="band page-head">
+    <div class="wrap">
+      <span class="label">Updates</span>
+      <h1 class="h-page">News</h1>
+    </div>
+  </section>
+
+  <section class="band band--ink" id="schedule">
+    <div class="wrap stack">
+      <div class="head">
+        <span class="label">{team.game}</span>
+        <h2 class="h-sec">Schedule</h2>
+        <p class="lede">Match days and results are posted on <a href={site.facebook} target="_blank" rel="noopener noreferrer">Facebook</a> first.</p>
+      </div>
+      <Events events={team.events} />
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap" style="padding-block:0 clamp(56px,8vw,96px)">
+      {news.map((n) => (
+        <article class="post" id={n.slug}>
+          <div>
+            <span class="label">{n.date}</span>
+            <span class="label" style="color:var(--cream-dim)">{n.tag}</span>
+          </div>
+          <div>
+            <h2 class="h-item" style="font-size:clamp(28px,4vw,44px)">{n.title}</h2>
+            <p class="prose">{n.body}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</Base>

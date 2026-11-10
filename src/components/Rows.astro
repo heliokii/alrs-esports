@@ -1,0 +1,15 @@
+---
+interface Props { items: { title: string; body: string }[] }
+const { items } = Astro.props;
+---
+<ol class="rows">
+  {items.map((it, i) => (
+    <li class="row">
+      <span class="num">{String(i + 1).padStart(2, '0')}</span>
+      <div>
+        <h3 class="h-item">{it.title}</h3>
+        <p>{it.body}</p>
+      </div>
+    </li>
+  ))}
+</ol>

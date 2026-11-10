@@ -1,0 +1,33 @@
+---
+import type { Event } from '../data/teams/valorant';
+
+interface Props { events: Event[] }
+const { events } = Astro.props;
+const pad = (i: number) => String(i + 1).padStart(2, '0');
+const TZ = 'Asia/Manila';
+const startLabel = (iso: string) =>
+  new Intl.DateTimeFormat('en-PH', { day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: '2-digit', timeZone: TZ }).format(new Date(iso)) + ' PHT';
+const statusLabel = (iso: string) =>
+  'Starts ' + new Intl.DateTimeFormat('en-PH', { day: 'numeric', month: 'short', timeZone: TZ }).format(new Date(iso));
+const units = [['d', 'days'], ['h', 'hrs'], ['m', 'min'], ['s', 'sec']];
+---
+<ol class="events">
+  {events.map((e, i) => (
+    <li class="event" data-tilt data-start={e.date || undefined}>
+      <span class="ghost-num num" aria-hidden="true">{pad(i)}</span>
+      <div class="pcard__top">
+        <span class="label">{e.series}</span>
+        <span class="tag" data-status>{e.date ? statusLabel(e.date) : e.status}</span>
+      </div>
+      <div>
+        <h3>{e.name}</h3>
+        {e.date && (
+          <div class="countdown num" role="timer" aria-label="Time until start">
+            {units.map(([k, label]) => <span><b data-cd={k}>--</b>{label}</span>)}
+          </div>
+        )}
+        <div class="kv"><span>Start</span><span>{e.date ? startLabel(e.date) : 'TBA'}</span></div>
+      </div>
+    </li>
+  ))}
+</ol>

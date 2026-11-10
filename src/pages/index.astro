@@ -1,0 +1,154 @@
+---
+import Base from '../layouts/Base.astro';
+import PlayerCard from '../components/PlayerCard.astro';
+import Events from '../components/Events.astro';
+import Backdrop from '../components/Backdrop.astro';
+import { site } from '../data/site';
+import { news } from '../data/news';
+import { faq } from '../data/faq';
+import team from '../data/teams/valorant';
+
+const ticker = [...site.ticker, ...site.ticker, ...site.ticker, ...site.ticker];
+---
+<Base title={`${site.name} | Valorant team from ${site.city}`}>
+  <link slot="head" rel="preload" as="image" href="/assets/bg-liquid.webp" type="image/webp">
+  <link slot="head" rel="preload" as="image" href="/assets/bg-silk.webp" type="image/webp">
+
+  <section class="hero">
+    <div class="hero__bg" aria-hidden="true"></div>
+    <div class="hero__shade" aria-hidden="true"></div>
+    <div class="wrap hero__meta">
+      <span>Valorant · {site.city}</span>
+      <span>Alangilan Red Spartans</span>
+      <span>Tryouts open</span>
+    </div>
+    <div class="hero__center">
+      <h1 class="hero__title" data-hero aria-label={site.name}>
+        <span class="hero__word" aria-hidden="true">
+          <span class="hero__fill">{site.short}</span>
+          <span class="hero__spot">{site.short}</span>
+          <span class="hero__sweep">{site.short}</span>
+        </span>
+        <span class="hero__sub" aria-hidden="true">Esports</span>
+      </h1>
+    </div>
+    <div class="hero__bar">
+      <div class="wrap">
+        <p class="lede">The Alangilan Red Spartans' Valorant team, built in {site.city}</p>
+        <div class="btns">
+          <a class="btn" href="/roster" data-magnetic>Meet the team</a>
+          <a class="btn btn--ghost" href="/tryouts" data-magnetic>Apply for tryouts</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">{ticker.map((t) => <span>{t}</span>)}</div>
+  </div>
+
+  <section class="band band--ink">
+    <Backdrop src="neon" pos="right 30%" opacity={0.5} fade="linear-gradient(90deg, var(--ink) 30%, rgb(18 12 13 / 0.4) 80%)" />
+    <div class="wrap split">
+      <div class="head">
+        <span class="label num">01 / Who we are</span>
+        <h2 class="h-sec">Red Spartans,<br>on the server</h2>
+      </div>
+      <div class="prose">
+        <p>{site.name} is the esports team of the Alangilan Red Spartans in {site.city}. We carry the same maroon into Valorant that the Spartans wear everywhere else.</p>
+        <p>Valorant comes first. One roster, one schedule, and room for more titles once this five is settled.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap stack">
+      <div class="head-row">
+        <div class="head">
+          <span class="label num">02 / The roster</span>
+          <h2 class="h-sec">Meet the five</h2>
+        </div>
+        <a class="more" href="/roster">Full roster</a>
+      </div>
+      <div class="cards">
+        {team.players.map((p, i) => <PlayerCard n={String(i + 1).padStart(2, '0')} name={p.name} role={p.role} tag={p.tag} agents={p.agents} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--ink">
+    <Backdrop src="liquid" pos="center 60%" opacity={0.3} fade="linear-gradient(180deg, var(--ink) 10%, rgb(18 12 13 / 0.5) 60%, var(--ink))" />
+    <div class="wrap stack">
+      <div class="head-row">
+        <div class="head">
+          <span class="label num">03 / Schedule</span>
+          <h2 class="h-sec">Schedule</h2>
+        </div>
+        <a class="more" href="/news#schedule">Full schedule</a>
+      </div>
+      <Events events={team.events} />
+    </div>
+  </section>
+
+  <section class="band tiles">
+    <a class="tile" href="/tryouts">
+      <span class="label">For players</span>
+      <h3>Think you can<br>make the five?</h3>
+      <p>Tryouts are open. Apply to be considered for the Valorant roster.</p>
+      <span class="more">Tryout details</span>
+    </a>
+    <a class="tile" href="/partner">
+      <span class="label">For brands</span>
+      <h3>Put your name<br>next to ours</h3>
+      <p>Back a Batangas team from its first season.</p>
+      <span class="more">Partnership</span>
+    </a>
+  </section>
+
+  <section class="band">
+    <div class="wrap stack">
+      <div class="head-row">
+        <div class="head">
+          <span class="label num">04 / News</span>
+          <h2 class="h-sec">Latest</h2>
+        </div>
+        <a class="more" href="/news">All news</a>
+      </div>
+      <div class="rows">
+        {news.slice(0, 3).map((n) => (
+          <a class="news-link" href={`/news#${n.slug}`}>
+            <span class="label">{n.date}</span>
+            <span class="h-item">{n.title}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--ink">
+    <div class="wrap split">
+      <div class="head">
+        <span class="label num">05 / FAQ</span>
+        <h2 class="h-sec">Questions<br>we get asked</h2>
+      </div>
+      <div class="rows faq">
+        {faq.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <Backdrop src="silk" pos="center 30%" opacity={0.6} fade="linear-gradient(90deg, rgb(10 7 8 / 0.9) 15%, rgb(10 7 8 / 0.25))" />
+    <div class="wrap stack" style="align-items:flex-start;gap:24px;padding-block:clamp(80px,12vw,160px)">
+      <img src={site.logo} alt="" width="41" height="80">
+      <span class="label" style="color:var(--cream-dim)">Follow the team</span>
+      <h2 class="h-page">ALRS.Esports</h2>
+      <a class="btn" href={site.facebook} target="_blank" rel="noopener noreferrer" data-magnetic>Follow on Facebook</a>
+    </div>
+  </section>
+</Base>

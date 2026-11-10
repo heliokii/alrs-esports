@@ -1,0 +1,6 @@
+---
+// Decorative texture behind a section's content. The parent needs position: relative and isolation: isolate (.band has both).
+interface Props { src: 'liquid' | 'silk' | 'neon'; pos?: string; opacity?: number; fade?: string }
+const { src, pos = 'center', opacity = 0.45, fade = 'linear-gradient(90deg, var(--black) 20%, transparent 85%)' } = Astro.props;
+---
+<div class="backdrop" aria-hidden="true" style={`--tex:url(/assets/bg-${src}.webp);--tex-pos:${pos};--tex-o:${opacity};--tex-fade:${fade}`}></div>

@@ -1,0 +1,73 @@
+---
+import Base from '../layouts/Base.astro';
+import PlayerCard from '../components/PlayerCard.astro';
+import Backdrop from '../components/Backdrop.astro';
+import { site } from '../data/site';
+
+type Team = typeof import('../data/teams/valorant').default;
+const teams = Object.values(import.meta.glob<{ default: Team }>('../data/teams/*.ts', { eager: true })).map((m) => m.default);
+const pad = (i: number) => String(i + 1).padStart(2, '0');
+---
+<Base title={`Roster | ${site.name}`} description={`Players, substitutes and staff of ${site.name}.`}>
+  <section class="band page-head">
+    <Backdrop src="liquid" pos="center 40%" opacity={0.45} fade="linear-gradient(90deg, rgb(10 7 8 / 0.92) 25%, rgb(10 7 8 / 0.35))" />
+    <div class="wrap">
+      <span class="label">{teams.map((t) => t.game).join(' · ')}</span>
+      <h1 class="h-page">The roster</h1>
+      <p class="lede">The players and staff wearing maroon for {site.name}</p>
+    </div>
+  </section>
+
+  {teams.map((team) => (
+    <>
+      <section class="band">
+        <div class="wrap stack">
+          <div class="head">
+            <span class="label">{team.game}</span>
+            <h2 class="h-sec">Main five</h2>
+          </div>
+          <div class="cards" style="--card-min:260px">
+            {team.players.map((p, i) => <PlayerCard n={pad(i)} {...p} />)}
+          </div>
+        </div>
+      </section>
+
+      {team.subs.length > 0 && (
+        <section class="band band--ink">
+          <div class="wrap stack">
+            <div class="head">
+              <span class="label">{team.game} · On the bench</span>
+              <h2 class="h-sec">Substitutes</h2>
+            </div>
+            <div class="cards" style="--card-min:260px">
+              {team.subs.map((p, i) => <PlayerCard n={`S${i + 1}`} {...p} />)}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <section class="band band--ink">
+        <div class="wrap stack">
+          <div class="head">
+            <span class="label">{team.game} · Behind the five</span>
+            <h2 class="h-sec">Staff</h2>
+          </div>
+          <div class="staff">
+            {team.staff.map((s) => <div><span>{s.name}</span><span class="label">{s.role}</span></div>)}
+          </div>
+        </div>
+      </section>
+    </>
+  ))}
+
+  <section class="band">
+    <div class="wrap head-row">
+      <div class="head" style="max-width:40em">
+        <span class="label">Tryouts are open</span>
+        <h2 class="h-sec">The door stays open</h2>
+        <p class="lede">Apply to be considered for substitute places, trial scrims and future roster spots.</p>
+      </div>
+      <a class="btn" href="/tryouts#form-tryout">Apply for tryouts</a>
+    </div>
+  </section>
+</Base>

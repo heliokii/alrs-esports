@@ -1,0 +1,30 @@
+---
+import { site } from '../data/site';
+
+interface Field { name: string; label: string; type?: 'text' | 'email' | 'textarea' | 'select'; options?: string[]; optional?: boolean }
+interface Props { id: string; subject: string; submit: string; fields: Field[] }
+const { id, subject, submit, fields } = Astro.props;
+// mailto needs text/plain so the mail body stays readable
+const action = site.formEndpoint || `mailto:${site.email}?subject=${encodeURIComponent(subject)}`;
+---
+<form class="form" id={id} method="post" action={action} enctype={site.formEndpoint ? undefined : 'text/plain'}>
+  {site.formEndpoint && <input type="hidden" name="_subject" value={subject}>}
+  {fields.map((f) => (
+    <label class="field">
+      {f.label}{f.optional && ' (optional)'}
+      {f.type === 'textarea' ? <textarea name={f.name} required={!f.optional}></textarea>
+        : f.type === 'select' ? (
+          <select name={f.name} required={!f.optional}>
+            <option value="">Select</option>
+            {f.options?.map((o) => <option>{o}</option>)}
+          </select>
+        )
+        : <input type={f.type ?? 'text'} name={f.name} required={!f.optional} autocomplete={f.type === 'email' ? 'email' : undefined}>}
+    </label>
+  ))}
+  <label class="check">
+    <input type="checkbox" name="consent" value="yes" required>
+    <span>I agree that {site.name} may use these details to reply to me, as described in the <a href="/privacy">privacy policy</a>.</span>
+  </label>
+  <button class="btn" type="submit">{submit}</button>
+</form>

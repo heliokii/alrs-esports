@@ -1,0 +1,87 @@
+---
+import '../styles/global.css';
+import { site } from '../data/site';
+
+interface Props { title: string; description?: string }
+const { title, description = site.description } = Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const current = (href: string) => (href === path ? 'page' : undefined);
+const menuLinks = [...site.nav, { href: '/tryouts', label: 'Tryouts' }];
+---
+<!doctype html>
+<html lang="en-PH">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <meta name="theme-color" content="#0a0708">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content={site.name}>
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz@9..144&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <slot name="head" />
+</head>
+<body>
+  <div class="wipe" aria-hidden="true"><img src={site.logo} alt="" width="36" height="70"></div>
+  <div class="progress" data-progress aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/" aria-label={`${site.name} home`}>
+        {site.logo && <img src={site.logo} alt="" width="18" height="36">}
+        {site.short}
+      </a>
+      <nav class="nav" aria-label="Main">
+        {site.nav.map((l) => <a href={l.href} aria-current={current(l.href)}>{l.label}</a>)}
+      </nav>
+      <a class="btn btn--sm" href="/partner">Partner with us</a>
+      <details class="menu">
+        <summary><span class="menu__open">Menu</span><span class="menu__close">Close</span></summary>
+        <nav aria-label="Mobile">
+          {menuLinks.map((l) => <a href={l.href} aria-current={current(l.href)}>{l.label}</a>)}
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main><slot /></main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div>
+        <div>
+          {site.logo && <img src={site.logo} alt="" width="33" height="64">}
+          <span class="wordmark">{site.short} Esports</span>
+          <p>{site.description}</p>
+        </div>
+      </div>
+      <nav aria-label="Footer">
+        <span class="label">Site</span>
+        {site.nav.map((l) => <a href={l.href}>{l.label}</a>)}
+        <a href="/tryouts">Valorant tryouts</a>
+        <a href="/privacy">Privacy policy</a>
+      </nav>
+      <div>
+        <div>
+          <span class="label">Reach us</span>
+          <a href={site.facebook} target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a href="/contact#form-contact">Contact form</a>
+          <a href="/tryouts#form-tryout">Apply for tryouts</a>
+        </div>
+      </div>
+    </div>
+    <div class="wrap legal">
+      <span>© 2026 {site.name} · {site.city}</span>
+      <span>Valorant</span>
+    </div>
+  </footer>
+
+  <script>import '../scripts/motion';</script>
+</body>
+</html>
