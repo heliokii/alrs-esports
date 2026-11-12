@@ -9,11 +9,11 @@ export default {
   name: 'ALRS Dark Eros',
   // Add `agents: [...]`, `riotId` or `photo` to any player when known.
   players: [
-    { name: 'gil', role: 'IGL / Initiator', tag: 'IGL' },
+    { name: 'john', role: 'IGL / Initiator', tag: 'IGL', photo: '/assets/players/john.webp' },
     { name: 'heliokzin', role: 'Duelist', tag: 'Main', agents: ['Neon', 'Phoenix'], photo: '/assets/players/heliokzin.webp' },
-    { name: 'Sipra', role: 'Controller', tag: 'Main' },
+    { name: 'Sipra', role: 'Controller', tag: 'Main', photo: '/assets/players/sipra.webp' },
     { name: 'i0n', role: 'Flex', tag: 'Main' },
-    { name: 'Empoleon', role: 'Sentinel / Initiator', tag: 'Main' },
+    { name: 'Empoleon', role: 'Sentinel / Initiator', tag: 'Main', photo: '/assets/players/empoleon.webp' },
   ] as Player[],
   subs: [
     { name: 'z4ichi', tag: 'Sub' },

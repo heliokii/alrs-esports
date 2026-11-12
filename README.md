@@ -36,7 +36,7 @@ This repo is the official ALRS Esports website, built and maintained by me. I al
 
 | Player    | Role                 |
 | --------- | -------------------- |
-| gil       | IGL / Initiator      |
+| john      | IGL / Initiator      |
 | heliokzin | Duelist              |
 | Sipra     | Controller           |
 | i0n       | Flex                 |

@@ -106,11 +106,16 @@ async function players() {
   const cuts = readdirSync(`${SRC}/players`).filter((f) => f.endsWith('-cut.png'));
   for (const file of cuts) {
     const name = file.replace(/-cut\.png$/, '');
-    // person fills the card width and stands on the bottom edge, leaving headroom for the tag row
-    const person = await sharp(`${SRC}/players/${file}`).trim().resize({ width: CARD_W }).toBuffer({ resolveWithObject: true });
-    const top = Math.max(0, CARD_H - person.info.height);
+    // person fills the card width and stands on the bottom edge, leaving headroom for the tag row;
+    // narrow cut-outs (arms crossed) are capped by height instead and centered
+    const person = await sharp(`${SRC}/players/${file}`)
+      .trim()
+      .resize({ width: CARD_W, height: CARD_H - 140, fit: 'inside' })
+      .toBuffer({ resolveWithObject: true });
+    const top = CARD_H - person.info.height;
+    const left = Math.round((CARD_W - person.info.width) / 2);
     const info = await sharp(playerBackdrop)
-      .composite([{ input: person.data, left: 0, top }])
+      .composite([{ input: person.data, left, top }])
       .webp({ quality: 82 })
       .toFile(`${OUT}/players/${name}.webp`);
     console.log(`players/${name}.webp ${info.width}x${info.height} ${Math.round(info.size / 1024)} KB`);
