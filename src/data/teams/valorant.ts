@@ -12,13 +12,12 @@ export default {
     { name: 'john valorant', role: 'IGL / Initiator', tag: 'IGL', photo: '/assets/players/john.webp' },
     { name: 'heliokzin', role: 'Duelist', tag: 'Main', agents: ['Neon', 'Phoenix'], photo: '/assets/players/heliokzin.webp' },
     { name: 'Sipra', role: 'Controller', tag: 'Main', photo: '/assets/players/sipra.webp' },
-    { name: 'i0n', role: 'Flex', tag: 'Main' },
+    { name: 'Drcy', role: 'Flex', tag: 'Main', photo: '/assets/players/drcy.webp' },
     { name: 'Empoleon', role: 'Sentinel / Initiator', tag: 'Main', photo: '/assets/players/empoleon.webp' },
   ] as Player[],
   subs: [
     { name: 'z4ichi', tag: 'Sub' },
     { name: 'jahi', tag: 'Sub' },
-    { name: 'Drcy', tag: 'Sub' },
     { name: 'kingke', tag: 'Sub' },
     { name: 'sheepy', tag: 'Coach' }, // playing coach: also listed under staff
   ] as Player[],

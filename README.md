@@ -39,10 +39,10 @@ This repo is the official ALRS Esports website, built and maintained by me. I al
 | john valorant | IGL / Initiator      |
 | heliokzin     | Duelist              |
 | Sipra         | Controller           |
-| i0n           | Flex                 |
+| Drcy          | Flex                 |
 | Empoleon      | Sentinel / Initiator |
 
-**Subs:** z4ichi, jahi, Drcy, kingke, sheepy (playing coach)
+**Subs:** z4ichi, jahi, kingke, sheepy (playing coach)
 
 **Staff:** sheepy (Coach / Player), Yzak (Manager), Marl (Co-manager)
 
