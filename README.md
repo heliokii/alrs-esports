@@ -34,13 +34,13 @@ This repo is the official ALRS Esports website, built and maintained by me. I al
 
 ## ALRS Dark Eros
 
-| Player    | Role                 |
-| --------- | -------------------- |
-| john      | IGL / Initiator      |
-| heliokzin | Duelist              |
-| Sipra     | Controller           |
-| i0n       | Flex                 |
-| Empoleon  | Sentinel / Initiator |
+| Player        | Role                 |
+| ------------- | -------------------- |
+| john valorant | IGL / Initiator      |
+| heliokzin     | Duelist              |
+| Sipra         | Controller           |
+| i0n           | Flex                 |
+| Empoleon      | Sentinel / Initiator |
 
 **Subs:** z4ichi, jahi, Drcy, kingke, sheepy (playing coach)
 

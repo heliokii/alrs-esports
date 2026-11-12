@@ -2,14 +2,14 @@
 // photo: cut-out PNG in assets-src/players, built to /assets/players/<name>.webp by `npm run assets`
 // role is optional: substitutes without a set role show only their tag
 export type Player = { name: string; riotId?: string; role?: string; tag: string; agents?: string[]; photo?: string };
-export type Event = { series: string; name: string; status: string; date?: string };
+export type Event = { series: string; name: string; status: string; date?: string; url?: string };
 
 export default {
   game: 'Valorant',
   name: 'ALRS Dark Eros',
   // Add `agents: [...]`, `riotId` or `photo` to any player when known.
   players: [
-    { name: 'john', role: 'IGL / Initiator', tag: 'IGL', photo: '/assets/players/john.webp' },
+    { name: 'john valorant', role: 'IGL / Initiator', tag: 'IGL', photo: '/assets/players/john.webp' },
     { name: 'heliokzin', role: 'Duelist', tag: 'Main', agents: ['Neon', 'Phoenix'], photo: '/assets/players/heliokzin.webp' },
     { name: 'Sipra', role: 'Controller', tag: 'Main', photo: '/assets/players/sipra.webp' },
     { name: 'i0n', role: 'Flex', tag: 'Main' },
@@ -27,7 +27,9 @@ export default {
     { name: 'Yzak', role: 'Manager' },
     { name: 'Marl', role: 'Co-manager' },
   ],
-  // PLACEHOLDER: real events. date is ISO with the Philippine offset, e.g. '2026-11-17T19:00:00+08:00'.
-  // With a date the card shows a live countdown; without one it shows `status`.
-  events: [{ series: 'Valorant', name: 'Next tournament to be announced', status: 'TBA', date: '' }] as Event[],
+  // date is ISO with the Philippine offset, e.g. '2026-11-17T19:00:00+08:00'.
+  // With a date the card shows a live countdown; without one it shows `status`. `url` makes the whole card a link.
+  events: [
+    { series: 'Valorant', name: 'Alliance Games South Luzon Valorant Tournament', status: 'Upcoming', url: 'https://www.facebook.com/AllGSL/' },
+  ] as Event[],
 };

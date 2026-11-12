@@ -188,7 +188,7 @@ img { max-width: 100%; }
 .pcard__top { position: relative; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
 .tag { padding: 4px 8px; border: 1px solid rgb(243 235 221 / 0.3); font-size: 12px; line-height: 16px; color: var(--cream-dim); white-space: nowrap; }
 .pcard__body { position: relative; display: flex; flex-direction: column; gap: 8px; }
-.pcard__body h3 { font-size: clamp(22px, 17cqi, 56px); white-space: nowrap; }
+.pcard__body h3 { font-size: clamp(22px, 16cqi, 56px); }
 .kv { display: flex; justify-content: space-between; gap: 12px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 13px; line-height: 20px; }
 .kv span:first-child { color: var(--muted); }
 
@@ -196,6 +196,8 @@ img { max-width: 100%; }
 .event { min-height: 320px; display: flex; flex-direction: column; justify-content: space-between; gap: 28px; padding: 24px; }
 .event > * { position: relative; }
 .event .ghost-num { position: absolute; }
+.event > .event__link { position: absolute; inset: 0; z-index: 2; }
+.event__link:focus-visible { outline-offset: -4px; }
 .event h3 { font-size: clamp(32px, 4vw, 48px); margin-bottom: 16px; }
 .event.is-live .tag { background: var(--cream); border-color: var(--cream); color: var(--black); }
 .countdown { display: flex; gap: 20px; margin-bottom: 16px; }
