@@ -13,13 +13,13 @@ export default {
     { name: 'heliokzin', role: 'Duelist', tag: 'Main', agents: ['Neon', 'Phoenix'], photo: '/assets/players/heliokzin.webp' },
     { name: 'Sipra', role: 'Controller', tag: 'Main', photo: '/assets/players/sipra.webp' },
     { name: 'Drcy', role: 'Flex', tag: 'Main', photo: '/assets/players/drcy.webp' },
-    { name: 'Empoleon', role: 'Sentinel / Initiator', tag: 'Main', photo: '/assets/players/empoleon.webp' },
+    { name: 'sheepy', role: 'Sentinel / Initiator', tag: 'Main', photo: '/assets/players/sheepy.webp' }, // playing coach: also listed under staff
   ] as Player[],
   subs: [
+    { name: 'Empoleon', role: 'Sentinel / Initiator', tag: 'Sub', photo: '/assets/players/empoleon.webp' },
     { name: 'z4ichi', tag: 'Sub' },
     { name: 'jahi', tag: 'Sub' },
     { name: 'kingke', tag: 'Sub' },
-    { name: 'sheepy', tag: 'Coach' }, // playing coach: also listed under staff
   ] as Player[],
   staff: [
     { name: 'sheepy', role: 'Coach / Player' },
